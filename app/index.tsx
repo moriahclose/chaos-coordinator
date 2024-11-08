@@ -91,7 +91,6 @@ export default function Index() {
         const getFamilies = async () => {
             const familiesCollection = collection(db, 'families')
             const querySnapshot = await getDocs(familiesCollection)
-            console.log(querySnapshot.docs)
             const familiesData = querySnapshot.docs.map((doc) => ({
                 familyId: doc.id,
                 familyName: doc.data().name,
@@ -111,7 +110,7 @@ export default function Index() {
         >
             <Text>Families</Text>
             {families.map((family) => (
-                <FamilyDetails {...family} />
+                <FamilyDetails key={family.familyId} {...family} />
             ))}
         </View>
     )
